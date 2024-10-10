@@ -1,5 +1,6 @@
 package com.entity.mappings.controller;
 
+import com.entity.mappings.dto.CreatePostDTO;
 import com.entity.mappings.model.Post;
 import com.entity.mappings.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,13 @@ public class PostController {
         return ResponseEntity.ok(postService.getAllPosts());
     }
 
+    @PostMapping("/specific-user")
+    public ResponseEntity<?> createPostForSpecificUser(@RequestBody CreatePostDTO createPostDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPostForSpecificUser(createPostDTO));
+    }
+
     @PostMapping
-    public ResponseEntity<?> createPost(@RequestBody Post post) {
+    public ResponseEntity<?> createPost(@RequestBody Post post){
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.createPost(post));
     }
 
