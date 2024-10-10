@@ -21,6 +21,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
+    @GetMapping("/with-posts")
+    public ResponseEntity<?> getUsersWithPosts(){
+        return ResponseEntity.ok(userService.getUsersWithPosts());
+    }
+
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
